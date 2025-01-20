@@ -1,0 +1,20 @@
+
+.sampleRole{
+   background-color: gray;
+}
+
+.admin {
+   background-color: green;
+}
+
+.buyer {
+   background-color: yellow;
+}
+
+.seller {
+   background-color: blue;
+}
+
+.errorMessages {
+   color: red;
+}

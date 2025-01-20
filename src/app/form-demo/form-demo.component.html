@@ -1,0 +1,76 @@
+
+<form #myForm="ngForm" (submit)="handleSubmit()">
+    <h4>Signup Form (Template Driven)</h4>
+    <div>
+        <label for="full_name">Name:</label>
+        <input type="text" id="full_name" [(ngModel)]="formData.full_name" name="full_name" #nameInput="ngModel" required minlength="5" maxlength="50" />
+
+        <ul class="errorMessages" *ngIf="nameInput.invalid && nameInput.touched">
+            <li *ngIf="nameInput.errors?.['required']">This value is required!</li>
+            <li *ngIf="nameInput.errors?.['minlength']">Your name must be atleast 5 characters long!</li>
+        </ul>
+    </div>
+    <div>
+        <label for="email">Email:</label>
+        <input type="email" id="email" [(ngModel)]="formData.email" name="email" required minlength="10" maxlength="100" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" #emailInput="ngModel" />
+        <ul class="errorMessages" *ngIf="emailInput.touched && emailInput.invalid">
+            <li *ngIf="emailInput.errors?.['required']">Email is required</li>
+            <li *ngIf="emailInput.errors?.['minlength']">Email must be atleast 10 characters long</li>
+            <li *ngIf="emailInput.errors?.['maxlength']">Email must NOT be more than 100 characters</li>
+            <li *ngIf="emailInput.errors?.['pattern']">Invalid Email Format</li>
+        </ul>
+    </div>
+    <div>
+        Gender:
+        <input type="radio" name="gender" value="male" [(ngModel)]="formData.gender" required #genderInput="ngModel" /> Male
+        <input type="radio" name="gender" value="female" [(ngModel)]="formData.gender" required #genderInput="ngModel"  /> Female
+        <ul class="errorMessages" *ngIf="genderInput.invalid">
+            <li>Gender is required</li>
+        </ul>
+    </div>
+    <div>
+        Role:
+        <select [(ngModel)]="formData.role" name="role" required #roleInput="ngModel">
+            <option value="admin">Admin</option>
+            <option value="buyer">Buyer</option>
+            <option value="seller">Seller</option>
+        </select>
+        <ul class="errorMessages" *ngIf="roleInput.invalid && roleInput.touched">
+            <li>Role is Required</li>
+        </ul>
+    </div>
+    <div>
+        <input type="checkbox" [(ngModel)]="formData.tnc" name="tnc" #tncInput="ngModel" required /> Accept Terms & Conditions 
+        <ul class="errorMessages" *ngIf="tncInput.touched && tncInput.invalid">
+            <li>Accept Terms & Conditions</li>
+        </ul>
+    </div>
+    <div>
+        <button [disabled]="myForm.invalid">SUBMIT</button>
+    </div>
+</form>
+<br>
+<table border="1">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Gender</th>
+            <th>Role</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let nextUser of users">
+            <td>{{nextUser.id}}</td>
+            <td>{{nextUser.full_name}}</td>
+            <td>{{nextUser.email}}</td>
+            <td>{{nextUser.gender}}</td>
+            <td [ngClass]="nextUser.role">{{nextUser.role}}</td>
+            <td>
+                <button (click)="deleteUser(nextUser.id)">DELETE</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
