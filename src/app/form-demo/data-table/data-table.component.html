@@ -1,0 +1,26 @@
+<h3>Data Table</h3>
+<table border="1">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Gender</th>
+            <th>Role</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let nextUser of users">
+            <td>{{nextUser.id}}</td>
+            <td>{{nextUser.full_name}}</td>
+            <td>{{nextUser.email}}</td>
+            <td>{{nextUser.gender}}</td>
+            <td [ngClass]="nextUser.role">{{nextUser.role}}</td>
+            <td>
+                <button (click)="initUpdateEventEmit()">Update</button>
+                <button (click)="deleteUser(nextUser.id)">DELETE</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

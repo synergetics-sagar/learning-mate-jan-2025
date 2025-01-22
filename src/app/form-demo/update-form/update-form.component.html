@@ -1,6 +1,8 @@
-
-<form #myForm="ngForm" (submit)="handleSubmit()">
-    <h4>Signup Form (Template Driven)</h4>
+<form class="updateUserForm" #myForm="ngForm" (submit)="handleSubmit()">
+    <h4>
+        Update User Form
+        <button (click)="endUpdate()">X</button>
+    </h4>
     <div>
         <label for="full_name">Name:</label>
         <input type="text" id="full_name" [(ngModel)]="formData.full_name" name="full_name" #nameInput="ngModel" required minlength="5" maxlength="50" />
@@ -49,11 +51,3 @@
         <button [disabled]="myForm.invalid">SUBMIT</button>
     </div>
 </form>
-
-<br>
-
-<app-data-table [users]="users" (deleteEvent)="deleteUser($event)"
-(initUpdateEvent)="initUpdateToggle($event)"
-></app-data-table>
-
-<app-update-form *ngIf="initUpdate" (endUpdateEvent)="initUpdateToggle($event)"></app-update-form>

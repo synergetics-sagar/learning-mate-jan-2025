@@ -2,14 +2,24 @@ import { CommonModule } from '@angular/common';
 import { Component, ViewChild } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { User } from './user';
+import { DataTableComponent } from "./data-table/data-table.component";
+import { UserStatsComponent } from "./user-stats/user-stats.component";
+import { UpdateFormComponent } from "./update-form/update-form.component";
 
 @Component({
   selector: 'app-form-demo',
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, DataTableComponent, UserStatsComponent, UpdateFormComponent],
   templateUrl: './form-demo.component.html',
   styleUrl: './form-demo.component.css'
 })
 export class FormDemoComponent {
+
+
+  initUpdate: boolean = false
+
+  initUpdateToggle(value:boolean){
+    this.initUpdate = value
+  }
 
   formData: User = {
     id: 0,
@@ -19,7 +29,7 @@ export class FormDemoComponent {
     role: "",
     tnc: false
   }
-
+  
   // Iterable Variable
   users: User[] = [
     {"id":1737349807459,"full_name":"sagar","email":"sagar@example.com","gender":"male","role":"admin","tnc":true},
@@ -32,8 +42,8 @@ export class FormDemoComponent {
   @ViewChild("myForm") myForm!: NgForm
 
 
-  formDataToString(){
-    return JSON.stringify(this.formData)
+  usersToString(){
+    return JSON.stringify(this.users)
   }
 
   handleSubmit(){
