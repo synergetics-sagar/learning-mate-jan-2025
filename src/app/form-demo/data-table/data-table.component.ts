@@ -14,7 +14,7 @@ export class DataTableComponent {
   @Input() users: User[] = []
 
   @Output() deleteEvent = new EventEmitter<number>()
-  @Output() initUpdateEvent = new EventEmitter<boolean>()
+  @Output() initUpdateEvent = new EventEmitter<any>()
 
   constructor(){
     this.deleteEvent.emit(1737349807459	)
@@ -24,7 +24,7 @@ export class DataTableComponent {
     this.deleteEvent.emit(id)
   }
 
-  initUpdateEventEmit(){
-    this.initUpdateEvent.emit(true)
+  initUpdateEventEmit(user: User){
+    this.initUpdateEvent.emit({initUpdate: true, user})
   }
 }

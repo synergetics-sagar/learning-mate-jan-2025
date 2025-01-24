@@ -52,8 +52,8 @@
 
 <br>
 
-<app-data-table [users]="users" (deleteEvent)="deleteUser($event)"
+<app-data-table #dataTable [users]="users" (deleteEvent)="deleteUser($event)"
 (initUpdateEvent)="initUpdateToggle($event)"
 ></app-data-table>
 
-<app-update-form *ngIf="initUpdate" (endUpdateEvent)="initUpdateToggle($event)"></app-update-form>
+<app-update-form *ngIf="initUpdate" [formData]="userToUpdate" (endUpdateEvent)="initUpdateToggle($event)"></app-update-form>

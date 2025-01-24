@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { User } from '../user';
 
@@ -10,7 +10,8 @@ import { User } from '../user';
   styleUrl: './update-form.component.css'
 })
 export class UpdateFormComponent {
-  formData: User = {
+
+  @Input() formData: User = {
       id: 0,
       full_name: "",
       email: "",
@@ -19,13 +20,13 @@ export class UpdateFormComponent {
       tnc: false
   }
 
-  @Output() endUpdateEvent = new EventEmitter<boolean>()
+  @Output() endUpdateEvent = new EventEmitter<any>()
 
   endUpdate(){
-    this.endUpdateEvent.emit(false)
+    this.endUpdateEvent.emit({initUpdate: false})
   }
   
   handleSubmit(){
-
+    this.endUpdateEvent.emit({initUpdate: false, updatedUser: this.formData})
   }
 }

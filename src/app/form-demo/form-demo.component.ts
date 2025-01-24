@@ -16,9 +16,35 @@ export class FormDemoComponent {
 
 
   initUpdate: boolean = false
+  userToUpdate: User = {
+    id: 0,
+    full_name: '',
+    email: '',
+    gender: '',
+    role: '',
+    tnc: false
+  }
 
-  initUpdateToggle(value:boolean){
-    this.initUpdate = value
+  initUpdateToggle(value:any){
+   
+    if(value.initUpdate){
+      this.initUpdate = value.initUpdate
+      let uid = value.id
+      this.userToUpdate = {...value.user}
+    }
+    else{
+      this.initUpdate = value.initUpdate
+      // Revceived: {..}
+      // Users: [{}, {}, {..}, {}]
+      let updatedUsersArray = this.users.map(nextUser=>{
+        if(nextUser.id==value.updatedUser.id){
+          nextUser = value.updatedUser
+        }
+        return nextUser
+      })
+      this.users = updatedUsersArray
+    }
+    
   }
 
   formData: User = {
@@ -40,7 +66,6 @@ export class FormDemoComponent {
 
   // Syntax to create reference of form inside javascript
   @ViewChild("myForm") myForm!: NgForm
-
 
   usersToString(){
     return JSON.stringify(this.users)

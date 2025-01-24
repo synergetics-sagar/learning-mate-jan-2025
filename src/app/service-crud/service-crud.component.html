@@ -1,0 +1,16 @@
+<form #myForm="ngForm" (submit)="handleSubmit()">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" [(ngModel)]="user.name" #nameInput="ngModel" />
+    <br>
+    <label for="email">Email:</label>
+    <input type="text" id="email" name="email" [(ngModel)]="user.email" #emailInput="ngModel" />
+    <br>
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" [(ngModel)]="user.password" #passwordInput="ngModel" />
+    <br>
+    <button>Submit</button>
+</form>
+
+<br>
+
+<app-data-table #dataTable></app-data-table>

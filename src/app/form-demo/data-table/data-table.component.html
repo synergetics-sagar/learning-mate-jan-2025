@@ -18,7 +18,7 @@
             <td>{{nextUser.gender}}</td>
             <td [ngClass]="nextUser.role">{{nextUser.role}}</td>
             <td>
-                <button (click)="initUpdateEventEmit()">Update</button>
+                <button (click)="initUpdateEventEmit(nextUser)">Update</button>
                 <button (click)="deleteUser(nextUser.id)">DELETE</button>
             </td>
         </tr>
