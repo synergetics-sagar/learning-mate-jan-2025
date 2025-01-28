@@ -1,0 +1,50 @@
+<form [formGroup]="signupForm" (submit)="handleSubmit()">
+    <h4>Signup Form (Template Driven)</h4>
+    <div>
+        <label for="full_name">Name:</label>
+        <input type="text" id="full_name" formControlName="full_name"   />
+        <br>
+        <div class="errorMessage">
+            {{nameError}}
+        </div>
+    </div>
+    <div>
+        <label for="email">Email:</label>
+        <input type="email" id="email" formControlName="email"  />
+        <br>
+        <div class="errorMessage">
+            {{emailError}}
+        </div>
+    </div>
+    <div>
+        Gender:
+        <input type="radio" formControlName="gender" value="male" /> Male
+        <input type="radio" formControlName="gender" value="female"  /> Female
+        <br>
+        <div class="errorMessage">
+            {{genderError}}
+        </div>
+    </div>
+    <div>
+        Role:
+        <select formControlName="role">
+            <option value="admin">Admin</option>
+            <option value="buyer">Buyer</option>
+            <option value="seller">Seller</option>
+        </select>
+        <br>
+        <div class="errorMessage">
+            {{roleError}}
+        </div>
+    </div>
+    <div>
+        <input type="checkbox" formControlName="tnc" /> Accept Terms & Conditions 
+        <br>
+        <div class="errorMessage">
+            {{tncError}}
+        </div>
+    </div>
+    <div>
+        <button [disabled]="signupForm.invalid">SUBMIT</button>
+    </div>
+</form>
