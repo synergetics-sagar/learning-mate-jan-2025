@@ -1,8 +1,8 @@
 <form [formGroup]="signupForm" (submit)="handleSubmit()">
-    <h4>Signup Form (Template Driven)</h4>
+    <h4>Signup Form (Reactive Form)</h4>
     <div>
         <label for="full_name">Name:</label>
-        <input type="text" id="full_name" formControlName="full_name"   />
+        <input type="text" id="full_name" formControlName="name"   />
         <br>
         <div class="errorMessage">
             {{nameError}}

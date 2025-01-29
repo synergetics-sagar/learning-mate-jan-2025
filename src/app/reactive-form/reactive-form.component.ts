@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { UsersHttpClientService } from '../users-http-client.service';
 
 @Component({
   selector: 'app-reactive-form',
@@ -16,22 +17,22 @@ export class ReactiveFormComponent {
   roleError: string = ""
   tncError: string = ""
   // [a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$
-  constructor(){
+  constructor(private userService: UsersHttpClientService){
     // Initialization
     this.signupForm = new FormGroup({
-      full_name: new FormControl("", [Validators.required, Validators.minLength(5)]),
+      name: new FormControl("", [Validators.required, Validators.minLength(5)]),
       email: new FormControl("", [Validators.required, Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")]),
       gender: new FormControl("", [Validators.required]),
       role: new FormControl("", [Validators.required]),
       tnc: new FormControl(false, [Validators.requiredTrue])
     })
 
-    // let fullNameControl = this.signupForm.get("full_name")
+    // let fullNameControl = this.signupForm.get("name")
     // let fullNameObservable = fullNameControl?.valueChanges
     // fullNameObservable?.subscribe(()=>{
     //   this.setNameError()
     // })
-    this.signupForm.get("full_name")?.valueChanges.subscribe(()=>this.setNameError())
+    this.signupForm.get("name")?.valueChanges.subscribe(()=>this.setNameError())
     this.signupForm.get("email")?.valueChanges.subscribe(()=>this.setEmailError())
     this.signupForm.get("tnc")?.valueChanges.subscribe(()=>this.setTncError())
     this.signupForm.get("role")?.valueChanges.subscribe(()=>this.setRoleError())
@@ -41,7 +42,12 @@ export class ReactiveFormComponent {
 
   handleSubmit(){
     if(this.signupForm.valid){
-      console.log(this.signupForm.value)
+      let addUserObservable = this.userService.addUser(this.signupForm.value)
+      addUserObservable.subscribe({
+        error: (err)=>console.log(err),
+        complete: ()=>alert("Add User Completed"),
+        next: (res)=>console.log(res)
+      })
     }
     this.setEmailError()
     this.setGenderError()
@@ -50,7 +56,7 @@ export class ReactiveFormComponent {
   }
 
   setNameError(){
-    let fullNameControl = this.signupForm.get("full_name")
+    let fullNameControl = this.signupForm.get("name")
 
     if(fullNameControl?.hasError("required")){
       this.nameError = "Name is Rquired!"

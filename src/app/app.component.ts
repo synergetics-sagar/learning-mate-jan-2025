@@ -6,10 +6,12 @@ import { FormsModule } from '@angular/forms';
 import { FormDemoComponent } from './form-demo/form-demo.component';
 import { ServiceCrudComponent } from "./service-crud/service-crud.component";
 import { ReactiveFormComponent } from "./reactive-form/reactive-form.component";
+import { ObservablesPracticeComponent } from "./observables-practice/observables-practice.component";
+import { DataTableComponent } from "./data-table/data-table.component";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, FormsModule, ReactiveFormComponent], // Other component / Child Components
+  imports: [RouterOutlet, FormsModule, ReactiveFormComponent, ObservablesPracticeComponent, DataTableComponent], // Other component / Child Components
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

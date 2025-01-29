@@ -7,14 +7,16 @@ import { HttpClient } from '@angular/common/http';
 })
 export class UsersHttpClientService {
 
+  apiUrl = `http://localhost:8080/users`
+
   constructor(private http: HttpClient) { }
 
   getUsers(){
-    // return this.http.get()
+    return this.http.get<User[]>(this.apiUrl)
   }
 
   addUser(newUser: User){
-
+    return this.http.post<User>(this.apiUrl, newUser) // Observable
   }
 
   updateUser(updatedUser: User){
@@ -22,9 +24,8 @@ export class UsersHttpClientService {
     
   }
 
-
   deleteUser(id: string){
-
+    return this.http.delete(`${this.apiUrl}/${id}`)
   }
 
 }
