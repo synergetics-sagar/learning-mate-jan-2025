@@ -21,7 +21,6 @@ export class UsersHttpClientService {
 
   updateUser(updatedUser: User){
     let id = updatedUser.id
-    
   }
 
   deleteUser(id: string){

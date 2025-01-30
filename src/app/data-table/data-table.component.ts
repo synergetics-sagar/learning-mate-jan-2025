@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { UsersHttpClientService } from '../users-http-client.service';
 import { User } from '../user';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-data-table',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './data-table.component.html',
   styleUrl: './data-table.component.css'
 })

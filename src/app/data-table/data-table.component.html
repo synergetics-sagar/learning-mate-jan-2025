@@ -19,6 +19,7 @@
             <td>{{user.role}}</td>
             <td>
                 <button (click)="deleteUser(user.id)">Delete</button>
+                <button routerLink="/details/{{user.id}}">Details</button>
             </td>
         </tr>
     </tbody>
