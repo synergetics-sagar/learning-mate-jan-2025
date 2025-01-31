@@ -1,24 +1,17 @@
 import { Routes } from '@angular/router';
-import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
-import { DataTableComponent } from './data-table/data-table.component';
-import { NavigationComponent } from './navigation/navigation.component';
-import { UserDetailsComponent } from './user-details/user-details.component';
 
 export const routes: Routes = [
     {
         path: "",
-        component: NavigationComponent
+        loadComponent: ()=> import("./navigation/navigation.component").then(m=>m.NavigationComponent)
     },
     {
         path:"signup",
-        component: ReactiveFormComponent
-    },
+        loadComponent: ()=> import("./reactive-form/reactive-form.component").then(m=>m.ReactiveFormComponent)    },
     {
         path: "data-table",
-        component: DataTableComponent
-    },
+        loadComponent: ()=> import("./data-table/data-table.component").then(m=>m.DataTableComponent)    },
     {
         path:"details/:id",
-        component: UserDetailsComponent
-    }
+        loadComponent: ()=> import("./user-details/user-details.component").then(m=>m.UserDetailsComponent)    }
 ];
