@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UsersHttpClientService } from '../users-http-client.service';
+import { User } from '../user';
+import { UserForm } from '../user-form';
 
 @Component({
   selector: 'app-reactive-form',
@@ -19,13 +21,16 @@ export class ReactiveFormComponent {
   // [a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$
   constructor(private userService: UsersHttpClientService){
     // Initialization
-    this.signupForm = new FormGroup({
-      name: new FormControl("", [Validators.required, Validators.minLength(5)]),
-      email: new FormControl("", [Validators.required, Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")]),
-      gender: new FormControl("", [Validators.required]),
-      role: new FormControl("", [Validators.required]),
-      tnc: new FormControl(false, [Validators.requiredTrue])
+    this.signupForm = new FormGroup<UserForm>({
+      name: new FormControl("", {nonNullable: true, validators: [Validators.required, Validators.minLength(5)]}),
+      email: new FormControl("", {nonNullable: true, validators: [Validators.required, Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")]}),
+      gender: new FormControl("", {nonNullable: true, validators: [Validators.required]}),
+      role: new FormControl("", {nonNullable: true, validators: [Validators.required]}),
+      tnc: new FormControl(false, {nonNullable: true, validators: [Validators.requiredTrue]})
     })
+    
+
+    // console.log()
 
     // let fullNameControl = this.signupForm.get("name")
     // let fullNameObservable = fullNameControl?.valueChanges

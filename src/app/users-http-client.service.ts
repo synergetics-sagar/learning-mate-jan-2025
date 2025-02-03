@@ -16,6 +16,7 @@ export class UsersHttpClientService {
   }
 
   addUser(newUser: User){
+
     return this.http.post<User>(this.apiUrl, newUser) // Observable
   }
 
